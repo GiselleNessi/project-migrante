@@ -131,10 +131,10 @@ function Home() {
         <Box mb={10}>
                 <Button
           onClick={() => navigate("/mintbadge")}
-          colorScheme="cyan"
+          bgColor={"#463C5C"} color={"#fff"}
           display={attestations && attestations.length > 0 ? "block" : "none"}
         >
-          Go to Mint Badge Page
+          Go to Mint Badge
         </Button>
         </Box>
       </VStack>
