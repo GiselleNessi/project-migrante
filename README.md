@@ -1,22 +1,12 @@
 # Project Migrante
 
-![Project Migrante Logo](path-to-your-logo.png) <!-- Replace with your logo -->
-
 **Empowering migrants in legal grey areas through a decentralized job platform and attestation system.**
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
-Project Migrante is a platform designed to provide opportunities for migrants in legal gray areas to connect with job providers, get paid in cryptocurrency, and build a trustworthy track record through attestations. It leverages blockchain technology, Ethereum attestation service, and Worldcoin ID for user verification, fostering a safe and secure environment for all participants.
+### Project Migrante: Empowering Migrants Through Public Good
+
+Project Migrante is a pioneering platform that tackles the issues faced by migrants in illegal status seeking employment opportunities. By facilitating job postings and enabling cryptocurrency-based compensation, it provides a practical solution to a pressing challenge. Beyond its functional benefits, Project Migrante embodies the spirit of public good, bridging the gap between marginalized individuals and meaningful work. This initiative aligns seamlessly with the ethos of RetroPGF, showcasing how impactful software can drive positive societal change through technological innovation.
 
 ## Installation
 
@@ -24,7 +14,30 @@ yarn install
 
 yarn start
 
-## Features
+## Dapp
+
+Demo: https://project-migrante-dapp.vercel.app/
+
+Currently, the app operates as follows:
+
+1. Registration with Worldcoin ID: Users can register using Worldcoin ID, ensuring the authenticity of human users.
+
+2. Attesting Job Completion: Users have the capability to attest job completions by simply providing the relevant wallet address and attesting.
+
+3. Badge NFT Minting: As a gratifying incentive for their attestations, users can mint free badge NFTs.
+
+4. Donation NFT Minting: Users also have the option to mint donation NFTs, offering support to migrants for their accomplished tasks.
+
+## Smart Contracts and transactions
+
+Base: 0xfD16f4AfDdd7E3B1391F7896aF6c9843b16Be1e9
+
+Optimism transactions: https://goerli-optimism.etherscan.io//tx/0x458c863acf5d0a2d97bb4191e6eb3b229dbdd60c9ddff69836561abb5158fa25
+
+EAS attestation schema: https://optimism-goerli-bedrock.easscan.org/schema/view/0x67c417a59df0fb87b3038fceb3ae18dc1d6ac875a5cf8cfbcf1134c483b6c5a4
+
+
+## Main Features
 
 - **Job Posting:** Migrants can post their skills and available jobs, showcasing their expertise to potential employers.
 
@@ -32,9 +45,9 @@ yarn start
 
 - **Attestations:** Users can attest that a job was completed successfully, creating a verified history of a migrant's work.
 
-- **Badge Rewards:** Users earn badges for providing attestations, contributing to the credibility of the platform.
+- **Badge Rewards:** Users earn badges for providing attestations, contributing to the credibility of the platform using Base L2 blockchain
 
-- **Donations:** Support migrants by donating cryptocurrency as an alternative form of payment for their services.
+- **Donations:** Support migrants by donating in Optimism as an alternative form of payment for their services.
 
 ## Technologies
 
