@@ -15,8 +15,10 @@ import { ethers } from "ethers";
 import { Link, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { Link as ChakraLink } from "@chakra-ui/react";
 
-import { Button, Heading, Input, Center, VStack } from "@chakra-ui/react";
+
+import { Button, Heading, Input, Center, VStack, Text } from "@chakra-ui/react";
 
 const SubText = styled(Link)`
   display: block;
@@ -47,8 +49,6 @@ const WhiteBox = styled.div`
     width: 100%;
   }
 `;
-
-
 
 const eas = new EAS(EASContractAddress);
 
@@ -81,8 +81,12 @@ function Home() {
   return (
     <Center mt={6}>
       <VStack spacing={4}>
-       
-
+        <Text m={4}>
+          Go to our registration page to post a job and register with WorldcoinID{" "}
+          <ChakraLink as={Link} to="/welcome" color="blue.500">
+            here
+          </ChakraLink>
+        </Text>
         <WhiteBox>
           <Heading p={6}>I recommend this job</Heading>
 
@@ -100,7 +104,8 @@ function Home() {
           <Button
             m={6}
             size="lg"
-            bgColor={'#463C5C'} color={'#fff'}
+            bgColor={"#463C5C"}
+            color={"#fff"}
             onClick={async () => {
               if (status !== "connected") {
                 modal.setOpen(true);

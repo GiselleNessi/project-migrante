@@ -4,7 +4,8 @@ import { CustomConnectButton } from "./ui/CustomConnectKit";
 import { activeChainConfig } from "../utils/utils";
 import invariant from "tiny-invariant";
 import { useAccount } from "wagmi";
-import { Flex, Grid, Button, Box, Text } from "@chakra-ui/react";
+import { Flex, Grid, Button, Box, Text, Image } from "@chakra-ui/react";
+import logoImage from "./logo-text.png"
 
 type MenuItemProps = {
   active: boolean;
@@ -48,9 +49,8 @@ export function Header() {
         <Flex justify="center" py={4} px={{ base: 2, md: 6 }}>
           <Grid templateColumns="auto 1fr auto" w="100%">
             <Flex align="center" cursor="pointer" onClick={() => navigate("/")}>
-              <Text fontFamily="mono" fontWeight="bold" fontSize="22px" color={'#fff'}>
-                Project Migrante
-              </Text>
+            <Image src={logoImage} alt="Project Migrante Logo"  mr={2} />
+             
             </Flex>
 
             <Flex align="center" justify="center" gap={4}>

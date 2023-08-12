@@ -19,7 +19,6 @@ import {
 } from "@chakra-ui/react";
 import { getEarnedBadges, mintBadgeNFT } from "../src/utils/badgeManagement";
 import { useContract, useNFT } from "@thirdweb-dev/react";
-import { Link as ChakraLink } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 
 function Home() {
@@ -98,6 +97,7 @@ function Home() {
       <VStack spacing={4}>
         <Heading m={6}>Who you recommend a job done by</Heading>
         <Box
+          minWidth={"800px"}
           boxShadow="md"
           p={6}
           borderRadius="lg"
@@ -121,7 +121,6 @@ function Home() {
                       ? "Make your first attestation and mint a Novice Attester Badge NFT"
                       : "No one here yet"}
                   </Text>
-               
                 </>
               )}
             </>
@@ -129,13 +128,14 @@ function Home() {
         </Box>
 
         <Box mb={10}>
-                <Button
-          onClick={() => navigate("/mintbadge")}
-          bgColor={"#463C5C"} color={"#fff"}
-          display={attestations && attestations.length > 0 ? "block" : "none"}
-        >
-          Go to Mint Badge
-        </Button>
+          <Button
+            onClick={() => navigate("/mintbadge")}
+            bgColor={"#463C5C"}
+            color={"#fff"}
+            display={attestations && attestations.length > 0 ? "block" : "none"}
+          >
+            Go to Mint Your Badge
+          </Button>
         </Box>
       </VStack>
     </Center>

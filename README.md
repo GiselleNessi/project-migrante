@@ -16,7 +16,9 @@ yarn start
 
 ## Dapp
 
-Demo: https://project-migrante-dapp.vercel.app/
+Demo App: https://project-migrante-dapp.vercel.app/
+
+Presentation: https://www.figma.com/proto/4LvTUSlZtMDCn9dyL4OYup/Untitled?page-id=0%3A1&type=design&node-id=23-1885&viewport=-7981%2C567%2C0.38&t=DgcUdBuxQjIjql6p-1&scaling=scale-down&starting-point-node-id=23%3A1885&mode=design
 
 Currently, the app operates as follows:
 
@@ -65,3 +67,8 @@ EAS attestation schema: https://optimism-goerli-bedrock.easscan.org/schema/view/
 
 - **Chakra UI:** Enhance the user experience with the aesthetic and user-friendly components of Chakra UI.
 
+## Challenges we ran into
+
+- Navigating Library and Dependency Challenges: We encountered challenges arising from various libraries and dependencies, leading to the deletion of certain commit history when implementing fixes. However, the production environment provides a clear view of previous commits on the right side.
+- Dealing with Diverse Documentation: Negotiating the intricacies of different documentation sources posed a complexity in our development process.
+- Time Constraints on Fulfilling User Flows: Limited time availability hindered the realization of desired features and comprehensive user flows.

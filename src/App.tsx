@@ -5,6 +5,7 @@ import { Root } from "./Root";
 import Recommendations from "../src/Recommendations";
 import MintBadge from "./MintBadge";
 import Welcome from "./Welcome";
+import Donate from "./Donate";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/welcome",
     element: <Welcome />,
+  },
+  {
+    path: "/donate",
+    element: <Donate />,
   },
 ]);
 
