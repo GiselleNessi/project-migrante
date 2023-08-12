@@ -66,7 +66,7 @@ const usableChains = allChains
 
 const client = createClient(
   getDefaultClient({
-    appName: "Speaketh",
+    appName: "Project Migrante",
     alchemyId: alchemyApiKey,
     chains: usableChains,
   })

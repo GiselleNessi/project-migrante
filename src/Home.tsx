@@ -15,7 +15,7 @@ import { ethers } from "ethers";
 import { Link, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { CredentialType, IDKitWidget, ISuccessResult } from "@worldcoin/idkit";
+
 import { Button, Heading, Input, Center, VStack } from "@chakra-ui/react";
 
 const SubText = styled(Link)`
@@ -48,6 +48,8 @@ const WhiteBox = styled.div`
   }
 `;
 
+
+
 const eas = new EAS(EASContractAddress);
 
 function Home() {
@@ -57,38 +59,7 @@ function Home() {
   const { data: signer } = useSigner();
   const [attesting, setAttesting] = useState(false);
   const [ensResolvedAddress, setEnsResolvedAddress] = useState("ginie.eth");
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
-  const handleProof = (result: ISuccessResult) => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => resolve(), 3000);
-      // NOTE: Example of how to decline the verification request and show an error message to the user
-    });
-  };
-
-  const onSuccess = (result: ISuccessResult) => {
-    console.log(result);
-  };
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const credential_types = (urlParams
-    .get("credential_types")
-    ?.split(",") as CredentialType[]) ?? [
-    CredentialType.Orb,
-    CredentialType.Phone,
-  ];
-
-  const action = urlParams.get("register") ?? "";
-  const app_id =
-    urlParams.get("e687f7deb26d68824cadd49cc9c39877") ?? "wid_staging_1234";
-
-  useEffect(() => {
-    const addressParam = searchParams.get("address");
-    if (addressParam) {
-      setAddress(addressParam);
-    }
-  }, []);
 
   useEffect(() => {
     async function checkENS() {
@@ -110,21 +81,7 @@ function Home() {
   return (
     <Center mt={6}>
       <VStack spacing={4}>
-        <IDKitWidget
-          action={action}
-          signal="my_signal"
-          onSuccess={onSuccess}
-          handleVerify={handleProof}
-          app_id={app_id}
-          credential_types={credential_types}
-          // walletConnectProjectId="get_this_from_walletconnect_portal"
-        >
-          {({ open }) => (
-            <Button colorScheme="red" onClick={open}>
-              Register
-            </Button>
-          )}
-        </IDKitWidget>
+       
 
         <WhiteBox>
           <Heading p={6}>I recommend this job</Heading>
@@ -143,7 +100,7 @@ function Home() {
           <Button
             m={6}
             size="lg"
-            colorScheme="red"
+            bgColor={'#463C5C'} color={'#fff'}
             onClick={async () => {
               if (status !== "connected") {
                 modal.setOpen(true);

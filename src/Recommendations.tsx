@@ -18,11 +18,12 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { getEarnedBadges, mintBadgeNFT } from "../src/utils/badgeManagement";
-import { ThirdwebNftMedia, useContract, useNFT } from "@thirdweb-dev/react";
-
-const tokenId = 0;
+import { useContract, useNFT } from "@thirdweb-dev/react";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
 function Home() {
+  const navigate = useNavigate();
   const { address } = useAccount();
   const [attestations, setAttestations] = useState<ResolvedAttestation[]>([]);
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ function Home() {
     "0xfD16f4AfDdd7E3B1391F7896aF6c9843b16Be1e9"
   );
   const tokenId = 0; // the tokenId to look up
+  const quantity = 1; // how many NFTs you want to claim
   const { data: nft, isLoading, error } = useNFT(contract, tokenId);
 
   useEffect(() => {
@@ -83,44 +85,35 @@ function Home() {
 
       setAttestations(resolvedAttestations);
       setLoading(false);
-      const earnedBadges: string[] = getEarnedBadges(attestations.length.toString());
+      const earnedBadges: string[] = getEarnedBadges(
+        attestations.length.toString()
+      );
       setUserBadgeCount(earnedBadges.length);
     }
     getAtts();
   }, [address]);
 
-  const handleMintNFT = async (): Promise<void> => {
-    if (!address) {
-      console.error("Address is undefined");
-      return;
-    }
-
-    try {
-      if (userBadgeCount === 0) {
-        await mintBadgeNFT(address, "Novice Attester");
-        setUserBadgeCount(1);
-      }
-    } catch (error) {
-      console.error("Error minting NFT:", error);
-    }
-  };
-  
-  if (error || !nft) return <div>Loading...</div>;
-
   return (
     <Center>
       <VStack spacing={4}>
         <Heading m={6}>Who you recommend a job done by</Heading>
-        <Box boxShadow="md" p={6} borderRadius="lg" w={{ base: "100%", md: "590px" }}>
+        <Box
+          boxShadow="md"
+          p={6}
+          borderRadius="lg"
+          w={{ base: "100%", md: "590px" }}
+        >
           {loading ? (
             <Spinner />
           ) : (
             <>
               <Text mb={4}>Your Attestation Count: {attestations.length}</Text>
               {attestations.length > 0 ? (
-                attestations.map((attestation: ResolvedAttestation, i: number) => (
-                  <AttestationItem key={i} data={attestation} />
-                ))
+                attestations.map(
+                  (attestation: ResolvedAttestation, i: number) => (
+                    <AttestationItem key={i} data={attestation} />
+                  )
+                )
               ) : (
                 <>
                   <Text>
@@ -128,23 +121,22 @@ function Home() {
                       ? "Make your first attestation and mint a Novice Attester Badge NFT"
                       : "No one here yet"}
                   </Text>
-                  {userBadgeCount > 0 && (
-                    <Button onClick={handleMintNFT} mt={4}>
-                      Mint Novice Attester Badge NFT
-                    </Button>
-                  )}
+               
                 </>
               )}
             </>
           )}
         </Box>
 
-        {nft.metadata && (
-          <Flex className="mb-6">
-            <ThirdwebNftMedia metadata={nft.metadata} />
-          </Flex>
-        )}
-       
+        <Box mb={10}>
+                <Button
+          onClick={() => navigate("/mintbadge")}
+          colorScheme="cyan"
+          display={attestations && attestations.length > 0 ? "block" : "none"}
+        >
+          Go to Mint Badge Page
+        </Button>
+        </Box>
       </VStack>
     </Center>
   );

@@ -1,7 +1,5 @@
 import { ResolvedAttestation } from "./utils/types";
-import styled from "styled-components";
-import { Identicon } from "./components/Identicon";
-import { useAccount, useEnsAvatar, useSigner } from "wagmi";
+import { useAccount, useSigner } from "wagmi";
 import dayjs from "dayjs";
 import {
   baseURL,
@@ -15,84 +13,7 @@ import invariant from "tiny-invariant";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { MdOutlineVerified, MdVerified } from "react-icons/md";
-
-const Container = styled.div`
-  border-radius: 25px;
-  border: 1px solid rgba(168, 198, 207, 0.4);
-  background: #fff;
-  padding: 14px;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 10px;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-
-  @media (max-width: 700px) {
-    display: block;
-    text-align: center;
-  }
-`;
-
-const VerifyIconContainer = styled.div`
-  @media (max-width: 700px) {
-    margin-top: 16px;
-  }
-`;
-
-const IconHolder = styled.div`
-  @media (max-width: 700px) {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-`;
-const NameHolder = styled.div`
-  color: #000;
-  text-align: center;
-  font-size: 14px;
-  font-family: Montserrat, sans-serif;
-  font-weight: 700;
-  word-break: break-all;
-
-  @media (max-width: 700px) {
-    margin-bottom: 10px;
-  }
-`;
-const Time = styled.div`
-  color: #adadad;
-  text-align: center;
-  font-size: 14px;
-  font-family: Montserrat, serif;
-`;
-const Check = styled.div``;
-
-const ConfirmButton = styled.div`
-  display: inline-block;
-  border-radius: 10px;
-  border: 1px solid #cfb9ff;
-  background: #333342;
-  padding: 8px;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 12px;
-  font-family: Montserrat, sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-
-  :hover {
-    background: #cfb9ff;
-    color: #333342;
-  }
-
-  @media (max-width: 700px) {
-    margin-top: 10px;
-    width: 100%;
-    padding: 14px 8px;
-  }
-`;
+import { Box, Text, Flex } from "@chakra-ui/react";
 
 type Props = {
   data: ResolvedAttestation;
@@ -120,23 +41,56 @@ export function AttestationItem({ data }: Props) {
   }
 
   return (
-    <Container
+    <Box
+      borderRadius="25px"
+      border="1px solid rgba(168, 198, 207, 0.4)"
+      background="#fff"
+      padding="14px"
+      display="flex"
+      justifyContent="space-between"
+      boxSizing="border-box"
+      width="100%"
+      marginBottom="10px"
+      alignItems="center"
+      gap="16px"
+      cursor="pointer"
       onClick={() => {
         window.open(`${baseURL}/attestation/view/${data.id}`);
       }}
     >
-      <IconHolder>
-        <Identicon
-          address={isAttester ? data.recipient : data.attester}
-          size={60}
-        />
-      </IconHolder>
-      <NameHolder>{data.name}</NameHolder>
-      <Time>{dayjs.unix(data.time).format(timeFormatString)}</Time>
-      <Check>
+      <Text
+        color="#000"
+        textAlign="center"
+        fontSize="14px"
+        fontFamily="Montserrat, sans-serif"
+        fontWeight="700"
+      >
+        {data.name}
+      </Text>
+      <Text
+        color="#adadad"
+        textAlign="center"
+        fontSize="14px"
+        fontFamily="Montserrat, serif"
+      >
+        {dayjs.unix(data.time).format(timeFormatString)}
+      </Text>
+      <Flex>
         {isConfirmable ? (
-          <ConfirmButton
-            onClick={async (e) => {
+          <Box
+            as="button"
+            display="inline-block"
+            borderRadius="10px"
+            border="1px solid #cfb9ff"
+            background="#333342"
+            padding="8px"
+            boxSizing="border-box"
+            color="#fff"
+            fontSize="12px"
+            fontFamily="Montserrat, sans-serif"
+            fontWeight="700"
+            cursor="pointer"
+            onClick={async (e: { stopPropagation: () => void }) => {
               e.stopPropagation();
 
               setConfirming(true);
@@ -147,6 +101,7 @@ export function AttestationItem({ data }: Props) {
                 ]);
 
                 invariant(signer, "signer must be defined");
+                const eas = new EAS(EASContractAddress);
                 eas.connect(signer);
 
                 const tx = await eas.attest({
@@ -166,10 +121,10 @@ export function AttestationItem({ data }: Props) {
               } catch (e) {}
             }}
           >
-            {confirming ? "Confirming..." : "Confirm we met"}
-          </ConfirmButton>
+            {confirming ? "Confirming..." : "Confirm was a good job"}
+          </Box>
         ) : (
-          <VerifyIconContainer>
+          <Box marginLeft="8px">
             <Icon
               color={
                 data.confirmation
@@ -178,9 +133,9 @@ export function AttestationItem({ data }: Props) {
               }
               size={22}
             />
-          </VerifyIconContainer>
+          </Box>
         )}
-      </Check>
-    </Container>
+      </Flex>
+    </Box>
   );
 }

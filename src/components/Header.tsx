@@ -42,13 +42,13 @@ export function Header() {
   return (
     <>
       <Box
-        bg="#fff"
+        bg="#3EC8CC"
         borderBottom={`1px solid ${theme.neutrals["cool-grey-100"]}`}
       >
         <Flex justify="center" py={4} px={{ base: 2, md: 6 }}>
           <Grid templateColumns="auto 1fr auto" w="100%">
             <Flex align="center" cursor="pointer" onClick={() => navigate("/")}>
-              <Text fontFamily="mono" fontWeight="bold" fontSize="22px">
+              <Text fontFamily="mono" fontWeight="bold" fontSize="22px" color={'#fff'}>
                 Project Migrante
               </Text>
             </Flex>
@@ -56,6 +56,7 @@ export function Header() {
             <Flex align="center" justify="center" gap={4}>
               {menuItems.map((menuItem, i) => (
                 <Button
+                color={'#fff'}
                   key={i}
                   onClick={menuItem.onClick}
                   variant={
