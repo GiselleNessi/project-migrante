@@ -20,6 +20,8 @@ Demo App: https://project-migrante-dapp.vercel.app/
 
 Presentation: https://www.figma.com/proto/4LvTUSlZtMDCn9dyL4OYup/Untitled?page-id=0%3A1&type=design&node-id=23-1885&viewport=-7981%2C567%2C0.38&t=DgcUdBuxQjIjql6p-1&scaling=scale-down&starting-point-node-id=23%3A1885&mode=design
 
+User (consumer) key frames: https://www.figma.com/file/4LvTUSlZtMDCn9dyL4OYup/Untitled?type=design&node-id=74%3A1752&mode=design&t=sqMMJTM7vb4ZubZW-1
+
 Currently, the app operates as follows:
 
 1. Registration with Worldcoin ID: Users can register using Worldcoin ID, ensuring the authenticity of human users.
@@ -32,12 +34,13 @@ Currently, the app operates as follows:
 
 ## Smart Contracts and transactions
 
-Base: 0xfD16f4AfDdd7E3B1391F7896aF6c9843b16Be1e9
+Base contract for badge reward minting: 0xfD16f4AfDdd7E3B1391F7896aF6c9843b16Be1e9
 
-Optimism transactions: https://goerli-optimism.etherscan.io//tx/0x458c863acf5d0a2d97bb4191e6eb3b229dbdd60c9ddff69836561abb5158fa25
+Optimism Contract for donation: 0xfB0b94cC2812cA3dCeFb7f21571c0030453e6CFe
 
 EAS attestation schema: https://optimism-goerli-bedrock.easscan.org/schema/view/0x67c417a59df0fb87b3038fceb3ae18dc1d6ac875a5cf8cfbcf1134c483b6c5a4
 
+Optimism transactions attestation: https://goerli-optimism.etherscan.io//tx/0x458c863acf5d0a2d97bb4191e6eb3b229dbdd60c9ddff69836561abb5158fa25
 
 ## Main Features
 
@@ -53,7 +56,7 @@ EAS attestation schema: https://optimism-goerli-bedrock.easscan.org/schema/view/
 
 ## Technologies
 
-- **Worldcoin ID:** Utilize Worldcoin ID for user registration and verification, ensuring the authenticity of participants.
+- **Worldcoin ID:** Utilize Worldcoin ID for user registration and verification, ensuring the authenticity of participants using worldcoin/idkit sdk.
 
 - **Ethereum Attestation Service:** Leverage Ethereum blockchain for secure attestations of completed jobs.
 
