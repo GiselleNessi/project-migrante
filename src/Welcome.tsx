@@ -28,7 +28,7 @@ const Welcome = () => {
 
   const action = urlParams.get("register") ?? "";
   const app_id =
-    urlParams.get("e687f7deb26d68824cadd49cc9c39877") ?? "wid_staging_1234";
+    urlParams.get("app_staging_e687f7deb26d68824cadd49cc9c39877") ?? "wid_staging_1234";
 
   useEffect(() => {
     const addressParam = searchParams.get("address");
